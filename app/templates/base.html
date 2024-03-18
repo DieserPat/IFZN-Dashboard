@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Dashboard for the engine test cell of THN"
+    />
+    <meta name="author" content="Fabian Grossmann" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{% block title %} {% endblock%}</title>
+    <link rel="stylesheet" href="../static/css/GundH-css.css" />
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='img/sicon.ico') }}"
+    />
+  </head>
+  <body>
+    <!-- headline -->
+    <div class="headline"></div>
+
+    <!-- Sidebar -->
+    <div class="icon-bar" id="navbar">
+      <span id="nav_home" class="active">
+        <a href="/">
+          <img
+            src="../static/img/GundH.svg"
+            alt="logo of the 'Groß und Heimisch Company'"
+            width="70%"
+          />
+        </a>
+      </span>
+      <span id="nav_dash">
+        <a href="/Dashboard" id="nav_dash_link">
+          <img src="../static/img/Dash_icon.svg" alt="dashboard-icon" width="70%" />
+        </a>
+      </span>
+      <span>
+        <a href="/AMA" id="nav_tools">
+          <img src="../static/img/Tools_icon.svg" alt="exhaust-icon" width="70%" />
+        </a>
+      </span>
+      <span>
+        <a href="/DAT" id="nav_dat">
+          <img
+            src="../static/img/Data2_icon.svg"
+            alt="simulation-icon"
+            width="70%"
+          />
+        </a>
+      </span>
+      <span>
+        <a href="#" id="nav_history">
+          <img
+            src="../static/img/service_icon.svg"
+            alt="simulation-icon"
+            width="70%"
+          />
+        </a>
+      </span>
+      <span>
+        <a href="#" id="nav_db">
+          <img
+            src="../static/img/cloud_icon.svg"
+            alt="simulation-icon"
+            width="70%"
+          />
+        </a>
+      </span>
+    </div>
+
+    <!-- Main Content -->
+    {% block content %} {% endblock %}
+
+    <!-- Footer -->
+    <footer>
+      <hr />
+      <div class="row">
+        <div class="col-1">
+          <p class="p-footer">Institut für Fahrzeugtechnik Nürnberg</p>
+        </div>
+        <div class="col-10">
+          <p class="p-footer">
+            Author: Fabian Großmann<br />
+            <a href="mailto:grossmannfa66554@th-nuernberg.de"
+              >grossmannfa66554@th-nuernberg.de</a
+            >
+          </p>
+        </div>
+        <div class="col-1">
+          <p class="p-footer">
+            Dezember 2022<br />
+            Version 0.9
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScripts -->
+    {% block javascript %} {% endblock %}
+  </body>
+</html>

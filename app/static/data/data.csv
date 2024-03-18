@@ -1,0 +1,14 @@
+index,mean,derrivate
+nEng,2550,10.0
+mEng,250.0,3.0
+TBreak,22.0,3.0
+throttlePos,15.0,2.0
+PLUstat,5.0,3.0
+PLUmeas,8.0,4.0
+PLUTemp,21.0,3.0
+AMACO2,5.0,2.0
+AMAO2,6.0,2.0
+AMANOx,450.0,200.0
+AMACOL,2516.0,300.0
+AMACOH,2.5,0.3
+AMAHC,40.0,5.0

@@ -1,0 +1,600 @@
+{% extends "base.html" %} {% block title %}G&H Dashboard{% endblock %} {% block
+content %}
+<!-- main content -->
+<div class="main-content">
+  <!-- Title -->
+  <div class="container-fluid text-center">
+    <div class="row align-items-center">
+      <div class="col-1">
+        <img
+          src="../static/img/logo_ifzn.svg"
+          alt="Logo from the ifzn"
+          style="width: 10em"
+        />
+      </div>
+      <div class="col-10">
+        <div class="row center">
+          <h1 class="font-style">Dashboard</h1>
+          <span class="head">by Groß&Heimisch</span>
+        </div>
+      </div>
+      <div class="col-1" style="padding-left: 0em">
+        <img
+          src="../static/img/logo.png"
+          alt="logo of the 'Groß und Heimisch Company'"
+          width="100em"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- end of title -->
+  <div style="display: flex">
+    <!-- Schaltschrankrelais 
+    onclick="ckb_relais()" -->
+    <aside>
+      <div class="aside_left" id="div_relais">
+        <div class="row">
+          <h2 class="split_h">Schaltschrankrelais</h2>
+          <label class="switch" id="switch_relais">
+            <input type="checkbox" id="checkbox_relais" value="0" />
+            <span class="slider round" id="slider_relais"></span>
+          </label>
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <span class="input-group-text">IP</span>
+            <input
+              type="text"
+              placeholder="255.255.255.255"
+              class="IP"
+              id="IPRelais"
+              value="{{content.ETHRelais.IP}}"
+            />
+            <span class="input-group-text">Port</span>
+            <input
+              type="number"
+              placeholder="3003"
+              class="port"
+              value="{{content.ETHRelais.Port}}"
+              id="PortRelais"
+            />
+            <!-- <button class="input-group-text updateBtn" id="update_ETHRelais">
+              <img
+                src="../static/img/update.svg"
+                alt="an icon to update"
+                height="70%"
+              />
+            </button> -->
+          </div>
+        </div>
+        <hr />
+        <ul class="list-group" id="list_buttons_relais">
+          <li class="list-group-item">
+            <div class="row">
+              <span class="table-gh">Nullförderhebel</span>
+              <button
+                type="button"
+                class="btn btn-off"
+                id="btn-relais0"
+                value="0"
+              >
+                OFF
+              </button>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="table-gh">Motorstart</span>
+              <button
+                type="button"
+                class="btn btn-off"
+                id="btn-relais1"
+                value="0"
+              >
+                OFF
+              </button>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="table-gh">Motorbremse</span>
+              <button
+                type="button"
+                class="btn btn-off"
+                id="btn-relais2"
+                value="0"
+              >
+                OFF
+              </button>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="table-gh">OME Pumpe</span>
+              <button
+                type="button"
+                class="btn btn-off"
+                id="btn-relais3"
+                value="0"
+              >
+                OFF
+              </button>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="table-gh">5V Schaltschrank</span>
+              <button
+                type="button"
+                class="btn btn-off"
+                id="btn-relais4"
+                value="0"
+              >
+                OFF
+              </button>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="table-gh">Kühlwasserpumpe</span>
+              <button
+                type="button"
+                class="btn btn-off"
+                id="btn-relais5"
+                value="1"
+              >
+                OFF
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Motorbremse -->
+      <div class="aside_left" id="div_break">
+        <div class="row">
+          <h2 class="split_h">Motorbremse</h2>
+          <label class="switch">
+            <input type="checkbox" id="checkbox_break" value="0" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <span class="input-group-text">COM</span>
+            <input
+              type="text"
+              placeholder="COM3"
+              class="com"
+              value="{{content.SerBreak.COM}}"
+              id="comBreak"
+            />
+            <!-- <button class="input-group-text updateBtn" id="update_SerBreak">
+              <img
+                src="../static/img/update.svg"
+                alt="an icon to update"
+                height="70%"
+              />
+            </button> -->
+          </div>
+        </div>
+        <hr />
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Soll-Drehzahl</span>
+              <input
+                class="wsb-2-inp"
+                type="number"
+                placeholder="1500"
+                id="nEngSetpoint"
+                max="3000"
+                min="0"
+                disabled
+              />
+              <span class="wsb-3">[min <sup>-1</sup>]</span>
+            </div>
+          </li>
+          <hr class="table-hr" />
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Drehzahl</span>
+              <span class="wsb-2" id="nEng">--</span>
+              <span class="wsb-3">[min <sup>-1</sup>]</span>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Drehmoment</span>
+              <span class="wsb-2" id="mEng">--</span>
+              <span class="wsb-3">[Nm]</span>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Temperatur</span>
+              <span class="wsb-2" id="TBreak">--</span>
+              <span class="wsb-3">[°C]</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="aside_left" id="div_throttle">
+        <div class="row">
+          <h2 class="split_h">Fahrpedalsteller</h2>
+          <label class="switch">
+            <input type="checkbox" id="checkbox_throttle" value="0" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <span class="input-group-text">IP</span>
+            <input
+              type="text"
+              placeholder="255.255.255.255"
+              class="IP"
+              value="{{content.ETHThrottle.IP}}"
+              id="IPThrottle"
+            />
+            <span class="input-group-text">Port</span>
+            <input
+              type="number"
+              placeholder="9009"
+              class="port"
+              value="{{content.ETHThrottle.Port}}"
+              id="PortThrottle"
+            />
+          </div>
+        </div>
+        <hr />
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Soll-Position</span>
+              <input
+                class="wsb-2-inp"
+                type="number"
+                placeholder="00.00"
+                id="throttleSetpoint"
+                max="100"
+                min="0"
+                disabled
+              />
+              <span class="wsb-3">[%]</span>
+            </div>
+          </li>
+          <hr class="table-hr" />
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Position</span>
+              <span class="wsb-2" id="throttlePos">--</span>
+              <span class="wsb-3">[%]</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Drehzahl und Drehmoment -->
+    <div class="engineParam" id="div_param">
+      <div class="row">
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-meas-off"
+            id="ButtonOnline"
+            value="0"
+          >
+            Go Online
+          </button>
+        </div>
+        <div class="col-8">
+          <h2>Motorparameter</h2>
+        </div>
+        <div class="col-2">
+          <button
+            type="button"
+            class="btn btn-meas-off"
+            id="MeasurmentOnOff"
+            value="0"
+          >
+            Start Messung
+          </button>
+        </div>
+      </div>
+      <hr />
+      <div class="row param">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <div class="gauges">
+            <div class="gauge-n">
+              <object
+                data="../static/img/Drehzahlmesser_Deutz_GH.svg"
+                width="100%"
+                id="gaugeSpeed"
+              ></object>
+            </div>
+            <div class="gauge-M">
+              <object
+                data="../static/img/Drehmoment_Deutz2.svg"
+                type="image/svg+xml"
+                width="100%"
+                id="gaugeTorque"
+              ></object>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <ul class="list-group">
+            <li class="list-group-item middle">
+              <div class="row">
+                <span class="wsb-1">Frequenz</span>
+                <input
+                  class="wsb-2-inp"
+                  type="number"
+                  placeholder="5"
+                  id="measurementFreq"
+                />
+                <span class="wsb-3">[Hz]</span>
+              </div>
+            </li>
+            <li class="list-group-item middle">
+              <div class="row">
+                <span class="wsb-1">Messdauer</span>
+                <input
+                  class="wsb-2-inp"
+                  type="number"
+                  placeholder="30"
+                  id="measurementDur"
+                />
+                <span class="wsb-3">[s]</span>
+              </div>
+            </li>
+            <hr class="table-hr" />
+            <li class="list-group-item middle">
+              <div class="row">
+                <span class="wsb-1">Laufzeit</span>
+                <span class="wsb-2" id="measurementTime">--</span>
+                <span class="wsb-3">[s]</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Diagramm -->
+      <div id="dashPlot" style="width: 100%; height: 50%"></div>
+    </div>
+    <!-- Kraftststoffwaage -->
+    <aside>
+      <div class="aside_right" id="div_PLU">
+        <div class="row">
+          <h2 class="split_h">Kraftstoffwaage</h2>
+          <label class="switch">
+            <input type="checkbox" id="checkbox_PLU" value="0" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <span class="input-group-text">COM</span>
+            <input
+              type="text"
+              placeholder="COM4"
+              class="com"
+              value="{{content.SerFuelScale.COM}}"
+              id="comPLU"
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="buttons-right-side">
+          <div class="row">
+            <button
+              type="button"
+              class="btn btn-plu-off"
+              style="width: 47.5%"
+              id="PLU_start"
+              value="0"
+            >
+              Start
+            </button>
+            <button
+              type="button"
+              class="btn btn-plu-off"
+              style="width: 47.5%"
+              id="PLU_stop"
+              value="0"
+            >
+              Stop
+            </button>
+          </div>
+          <div class="row" id="measurement_buttons">
+            <button
+              type="button"
+              class="btn btn-plu-off"
+              id="PLU_meas_stat"
+              value="0"
+            >
+              Statistik Messung
+            </button>
+            <button
+              type="button"
+              class="btn btn-plu-off"
+              id="PLU_meas_grav"
+              value="0"
+              disabled
+            >
+              Gravim. Messung
+            </button>
+            <button
+              type="button"
+              class="btn btn-plu-off"
+              id="PLU_meas_vol"
+              value="0"
+              disabled
+            >
+              Volum. Messung
+            </button>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Stat. Messung</span>
+              <span class="wsb-2" id="PLUstat">--</span>
+              <span class="wsb-3">[l/h]</span>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Messwert</span>
+              <span class="wsb-2" id="PLUmeas">--</span>
+              <span class="wsb-3">[kg/h]</span>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <span class="wsb-1">Temperatur</span>
+              <span class="wsb-2" id="PLUTemp">--</span>
+              <span class="wsb-3">[°C]</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Abgasmessanlage AMA -->
+      <div class="aside_right" id="div_AMA">
+        <div class="row">
+          <h2 class="split_h">AMA 4000</h2>
+          <label class="switch">
+            <input type="checkbox" id="checkbox_AMA" value="0" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <div class="row">
+          <div class="input-group">
+            <span class="input-group-text">IP</span>
+            <input
+              type="text"
+              placeholder="255.255.255.255"
+              class="IP"
+              value="{{content.ETHAMA.IP}}"
+            />
+            <span class="input-group-text">Port</span>
+            <input
+              type="number"
+              placeholder="5005"
+              class="port"
+              value="{{content.ETHAMA.Port}}"
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <!-- AMA-Card CO2 -->
+          <div class="outer-card">
+            <div class="inner-card">
+              <span class="val-ama" id="AMACO2">--</span>
+              <span class="unit-ama">[Vol .%]</span>
+            </div>
+            <div class="var-ama">
+              <span>CO<sub>2</sub></span>
+            </div>
+          </div>
+          <!-- AMA-Card O2 -->
+          <div class="outer-card">
+            <div class="inner-card">
+              <span class="val-ama" id="AMAO2">--</span>
+              <span class="unit-ama">[Vol .%]</span>
+            </div>
+            <div class="var-ama">
+              <span>O<sub>2</sub></span>
+            </div>
+          </div>
+          <!-- AMA-Card NOx -->
+          <div class="outer-card">
+            <div class="inner-card">
+              <span class="val-ama" id="AMANOx">--</span>
+              <span class="unit-ama">[ppm]</span>
+            </div>
+            <div class="var-ama">
+              <span>NO<sub>x</sub></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- AMA-Card CO-Low -->
+          <div class="outer-card">
+            <div class="inner-card">
+              <span class="val-ama" id="AMACOL">--</span>
+              <span class="unit-ama">[ppm]</span>
+            </div>
+            <div class="var-ama">
+              <span>CO<sub>LOW</sub></span>
+            </div>
+          </div>
+          <!-- AMA-Card CO-High -->
+          <div class="outer-card">
+            <div class="inner-card">
+              <span class="val-ama" id="AMACOH">--</span>
+              <span class="unit-ama">[Vol .%]</span>
+            </div>
+            <div class="var-ama">
+              <span>CO<sub>HIGH</sub></span>
+            </div>
+          </div>
+          <!-- AMA-Card HC -->
+          <div class="outer-card">
+            <div class="inner-card">
+              <span class="val-ama" id="AMAHC">--</span>
+              <span class="unit-ama">[ppm]</span>
+            </div>
+            <div class="var-ama">
+              <span>HC</span>
+            </div>
+          </div>
+        </div>
+        <div class="buttons-right-side">
+          <div class="row">
+            <button type="button" class="btn btn-ama-on" style="width: 47.5%">
+              Messtelle 1
+            </button>
+            <button type="button" class="btn btn-ama-off" style="width: 47.5%">
+              Mesststelle 2
+            </button>
+          </div>
+          <div class="row">
+            <button
+              type="button"
+              class="btn btn-ama-off"
+              style="width: 30.5%"
+              id="AMAMeasurement"
+              value="0"
+            >
+              Messung
+            </button>
+            <button type="button" class="btn btn-ama-off" style="width: 30.5%">
+              Rückspülen
+            </button>
+            <button type="button" class="btn btn-ama-off" style="width: 30.5%">
+              Spülen
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+{% endblock %} {% block javascript %}
+<script src="{{ url_for('static', filename='js/plotly.js') }}"></script>
+<script src="{{ url_for('static', filename='js/relais.js') }}"></script>
+<script src="{{ url_for('static', filename='js/break.js') }}"></script>
+<script src="{{ url_for('static', filename='js/AMA.js') }}"></script>
+<script src="{{ url_for('static', filename='js/throttle.js') }}"></script>
+<script src="{{ url_for('static', filename='js/PLU.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='js/makePlot.js') }}"></script> -->
+<script src="{{ url_for('static', filename='js/fetchData.js') }}"></script>
+<script src="{{ url_for('static', filename='js/externalSVG.js') }}"></script>
+<script>
+  document.getElementById("nav_dash_link").className = "active";
+</script>
+{% endblock %}

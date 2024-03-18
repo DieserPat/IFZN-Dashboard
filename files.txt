@@ -1,0 +1,6 @@
+0,1
+path,C:\Users\Administrator\Desktop\GH_Dash
+activate_path,cd env/Scripts
+activate,activate
+start,python run.py
+openDash,http://127.0.0.1:5000/

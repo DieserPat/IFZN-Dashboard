@@ -1,0 +1,11 @@
+Status	Bedeutung	Message
+BS	Gerät kann zur Zeit nicht antworten	3
+SE	Syntax Error	4
+DF	Datenfehler	5
+OK	Fehlerfreie Quittungsnachricht mit allen Daten	1
+PW	Passwortschutz, keine Parameteränderung möglich	9
+SY	Betriebssystemfehler während der Konfigurierung	6
+PG	Programmablauffehler	10
+FU	Funktionscode unbekannt	7
+RT	Betriebssystemfehler zur Laufzeit	8
+NA	Gerät nicht verfügbar	2
