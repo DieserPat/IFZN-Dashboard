@@ -1,0 +1,12 @@
+Task,EDS,Bemerkung,Message
+32,1,Zeitüberwachung Serielle Dichte und Temperatur,1
+6,1,Digitaleingang Gasblasenerkennung,2
+6,5,Digitaleingang Fehler Schaltverstärker,3
+6,6,Digitaleingang Überstrom Einlasspumpe,4
+6,7,Digitaleingang Überstrom Auslasspumpe 1,5
+6,8,Digitaleingang Überstrom Auslasspumpe 2,6
+19,1,Grenzwerttest Einlasstemperatur,7
+19,2,Grenzwerttest Auslasstemperatur,8
+19,3,Grenzwerttest Einlassdruck,9
+19,13,Auslassdruck außerhalb des Zulässigen Bereichs,10
+19,14,Rücklaufdruck außerhalb des Zulässigen Bereichs,11

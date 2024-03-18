@@ -1,0 +1,5 @@
+Zugangsdaten Datenbanksystem:
+	- Datenbank: PostgreSQL 14.2
+	- database: VKM@NAS
+	- user: VKM@NAS
+	- password: SQL@NAS

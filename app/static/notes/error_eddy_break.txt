@@ -1,0 +1,9 @@
+bin,message
+7,Voltage too low
+6,Current too high
+5,Torque too high
+4,Speed too low
+3,Speed too high
+2,Temperature not plausible
+1,Temperature too high
+0,Temperature warm
